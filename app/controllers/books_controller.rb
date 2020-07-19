@@ -4,6 +4,8 @@ before_action :authenticate_user!
 
   def show
     @book = Book.find(params[:id])
+    @book_new = Book.new
+    @book_comment = BookComment.new
 
 
   end
@@ -13,6 +15,7 @@ before_action :authenticate_user!
     @book = Book.new
     @user = current_user
     @book.user_id = current_user.id
+    
   end
 
   def create
@@ -48,7 +51,8 @@ before_action :authenticate_user!
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path
+    redirect_to books_path,notice: "successfully delete book!"
+
   end
 
   private
