@@ -14,7 +14,22 @@
 <div class="row">
 	<div class="col-xs-3">
 		<h2>User info</h2>
-		<%= render 'users/profile', user: @user %>
+		<%= render 'users/profileuser', user: @user %>
+		
+<% unless current_user?(@user) %>
+	    <div id="follow_form">
+		<% if current_user.following?(@user) %>
+
+		    <%= render 'users/unfollow', user:@user %>
+			<% else %>
+			<%= render 'users/follow', user: @user %>
+		<% end %>
+		</div>
+		<% end %>
+
+
+
+
 
 		<h2>New book</h2>
 		<%= render 'books/newform', book: @book %>
